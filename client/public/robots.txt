@@ -1,0 +1,30 @@
+# Cobrei - robots.txt
+# Política de rastreamento para bots
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /.env
+Disallow: /.git
+Disallow: /node_modules
+Disallow: /dist
+Disallow: /build
+
+# Crawl delay para não sobrecarregar servidor
+Crawl-delay: 1
+
+# Request rate
+Request-rate: 30/1m
+
+# Sitemap
+Sitemap: https://cobrei.com.br/sitemap.xml
+
+# Específico para Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Específico para Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

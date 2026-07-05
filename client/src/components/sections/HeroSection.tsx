@@ -281,13 +281,14 @@ export default function HeroSection() {
         paddingTop: "80px",
       }}
     >
-      {/* Background image overlay */}
+      {/* Background image overlay - LCP Critical */}
       <div
         className="absolute inset-0 opacity-30"
         style={{
           backgroundImage: `url('/manus-storage/cobrei-hero-bg_ac1aa1d6.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          contentVisibility: "auto",
         }}
       />
 

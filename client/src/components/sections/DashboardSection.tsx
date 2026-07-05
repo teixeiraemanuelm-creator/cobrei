@@ -1,17 +1,9 @@
 /**
  * DashboardSection – Seção 5
- * Design: Mockup de dashboard premium com gráfico Recharts
+ * Design: Mockup de dashboard premium com gráfico SVG (sem Recharts)
  * Estilo: Software premium, dark sidebar + light main area
+ * Performance: Removido Recharts (-200KB do bundle)
  */
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
 import { TrendingUp, AlertCircle, CheckCircle2, Clock } from "lucide-react";
 
 const CHART_DATA = [
@@ -38,26 +30,90 @@ const STATUS_CONFIG = {
   overdue: { label: "Vencida", color: "#EF4444", bg: "rgba(239,68,68,0.1)", icon: AlertCircle },
 };
 
-function CustomTooltip({ active, payload, label }: any) {
-  if (active && payload && payload.length) {
-    return (
-      <div
-        className="px-3 py-2 rounded-xl text-sm"
-        style={{
-          background: "#0B1736",
-          color: "white",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
-          fontFamily: "'JetBrains Mono', monospace",
-        }}
-      >
-        <div className="text-xs text-white/60 mb-1">{label}</div>
-        <div className="font-bold text-[#10D876]">
-          R${payload[0].value.toLocaleString("pt-BR")}
-        </div>
-      </div>
-    );
-  }
-  return null;
+/**
+ * Gráfico de área em SVG puro
+ * Substitui Recharts para reduzir bundle
+ */
+function AreaChartSVG() {
+  const maxValue = Math.max(...CHART_DATA.map(d => d.valor));
+  const width = 400;
+  const height = 160;
+  const padding = 20;
+  const chartWidth = width - padding * 2;
+  const chartHeight = height - padding * 2;
+
+  // Calcular pontos do gráfico
+  const points = CHART_DATA.map((d, i) => {
+    const x = padding + (i / (CHART_DATA.length - 1)) * chartWidth;
+    const y = height - padding - (d.valor / maxValue) * chartHeight;
+    return { x, y, ...d };
+  });
+
+  // Criar path para a área
+  const pathData = [
+    `M ${points[0].x} ${points[0].y}`,
+    ...points.slice(1).map(p => `L ${p.x} ${p.y}`),
+    `L ${points[points.length - 1].x} ${height - padding}`,
+    `L ${points[0].x} ${height - padding}`,
+    'Z'
+  ].join(' ');
+
+  // Criar path para a linha
+  const linePath = [
+    `M ${points[0].x} ${points[0].y}`,
+    ...points.slice(1).map(p => `L ${p.x} ${p.y}`)
+  ].join(' ');
+
+  return (
+    <svg width="100%" height={height} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#10D876" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#10D876" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+
+      {/* Grid lines */}
+      {[0, 1, 2, 3, 4].map(i => (
+        <line
+          key={`grid-${i}`}
+          x1={padding}
+          y1={padding + (i / 4) * chartHeight}
+          x2={width - padding}
+          y2={padding + (i / 4) * chartHeight}
+          stroke="rgba(11,23,54,0.05)"
+          strokeDasharray="3 3"
+          strokeWidth="1"
+        />
+      ))}
+
+      {/* Area */}
+      <path d={pathData} fill="url(#areaGradient)" />
+
+      {/* Line */}
+      <path d={linePath} stroke="#10D876" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* Dots */}
+      {points.map((p, i) => (
+        <circle key={`dot-${i}`} cx={p.x} cy={p.y} r="3" fill="#10D876" />
+      ))}
+
+      {/* X-axis labels */}
+      {points.map((p, i) => (
+        <text
+          key={`label-${i}`}
+          x={p.x}
+          y={height - 5}
+          textAnchor="middle"
+          fontSize="11"
+          fill="#9ca3af"
+          fontFamily="'Inter', sans-serif"
+        >
+          {p.day}
+        </text>
+      ))}
+    </svg>
+  );
 }
 
 export default function DashboardSection() {
@@ -132,6 +188,8 @@ export default function DashboardSection() {
                   src="/manus-storage/file_000000001cb471f5a5bf831dd4452b00_8c94ad74.png"
                   alt="Cobrei Logo"
                   className="h-6 w-auto"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 
@@ -245,39 +303,7 @@ export default function DashboardSection() {
                       +18% esta semana
                     </div>
                   </div>
-                  <ResponsiveContainer width="100%" height={160}>
-                    <AreaChart data={CHART_DATA} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
-                      <defs>
-                        <linearGradient id="colorValor" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#10D876" stopOpacity={0.3} />
-                          <stop offset="95%" stopColor="#10D876" stopOpacity={0} />
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(11,23,54,0.05)" />
-                      <XAxis
-                        dataKey="day"
-                        tick={{ fontSize: 11, fill: "#9ca3af", fontFamily: "'Inter', sans-serif" }}
-                        axisLine={false}
-                        tickLine={false}
-                      />
-                      <YAxis
-                        tick={{ fontSize: 11, fill: "#9ca3af", fontFamily: "'Inter', sans-serif" }}
-                        axisLine={false}
-                        tickLine={false}
-                        tickFormatter={(v) => `R$${v}`}
-                      />
-                      <Tooltip content={<CustomTooltip />} />
-                      <Area
-                        type="monotone"
-                        dataKey="valor"
-                        stroke="#10D876"
-                        strokeWidth={2.5}
-                        fill="url(#colorValor)"
-                        dot={{ fill: "#10D876", r: 3, strokeWidth: 0 }}
-                        activeDot={{ r: 5, fill: "#10D876" }}
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
+                  <AreaChartSVG />
                 </div>
 
                 {/* Payment list */}

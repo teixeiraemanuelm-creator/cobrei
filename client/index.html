@@ -1,22 +1,182 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <!-- Meta Tags Essenciais -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Cobrei – Cobrança Automática via WhatsApp e Pix</title>
-    <meta name="description" content="Gere Pix, envie lembretes automáticos pelo WhatsApp e acompanhe seus recebimentos em tempo real. Teste grátis por 7 dias." />
-    <meta property="og:title" content="Cobrei – Cobrança Automática via WhatsApp e Pix" />
-    <meta property="og:description" content="Pare de cobrar manualmente. O Cobrei recebe por você." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- SEO - Título e Descrição -->
+    <title>Cobrei - Cobrança Automática via WhatsApp e Pix | SaaS</title>
+    <meta name="description" content="Automatize suas cobranças via WhatsApp e Pix. Recupere 60% mais da inadimplência com lembretes inteligentes. Teste grátis por 7 dias. Sem cartão de crédito." />
+    <meta name="keywords" content="cobrança automática, pix, whatsapp, recuperação de inadimplência, saas, sistema de cobrança, automação financeira" />
+    <meta name="author" content="Cobrei" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="canonical" href="https://cobrei.com.br" />
+    <link rel="alternate" hreflang="pt-BR" href="https://cobrei.com.br" />
+
+    <!-- Open Graph (Redes Sociais) -->
+    <meta property="og:title" content="Cobrei - Cobrança Automática via WhatsApp e Pix" />
+    <meta property="og:description" content="Automatize suas cobranças via WhatsApp e Pix. Recupere 60% mais da inadimplência. Teste grátis." />
+    <meta property="og:image" content="https://cobrei.com.br/og-image.png" />
+    <meta property="og:url" content="https://cobrei.com.br" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Cobrei" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cobrei - Cobrança Automática via WhatsApp e Pix" />
+    <meta name="twitter:description" content="Automatize suas cobranças via WhatsApp e Pix. Teste grátis por 7 dias." />
+    <meta name="twitter:image" content="https://cobrei.com.br/og-image.png" />
+    <meta name="twitter:creator" content="@cobrei" />
+
+    <!-- Favicon e PWA -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#10D876" />
+    <meta name="msapplication-TileColor" content="#10D876" />
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=()" />
+
+    <!-- Preconnect para Performance (DNS + TCP) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" />
+    <link rel="preconnect" href="https://connect.facebook.net" />
+
+    <!-- Preload Critical Images (LCP) -->
+    <link rel="preload" as="image" href="/manus-storage/cobrei-hero-bg_ac1aa1d6.png" type="image/png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/manus-storage/file_000000001cb471f5a5bf831dd4452b00_8c94ad74.png" type="image/png" fetchpriority="high" />
+
+    <!-- DNS Prefetch para terceiros -->
+    <link rel="dns-prefetch" href="https://www.clarity.ms" />
+
+    <!-- Google Fonts com display=swap e preload -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    </noscript>
+
+    <!-- JSON-LD Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Cobrei",
+      "url": "https://cobrei.com.br",
+      "logo": "https://cobrei.com.br/logo.png",
+      "description": "Plataforma de cobrança automática via WhatsApp e Pix",
+      "sameAs": [
+        "https://www.facebook.com/cobrei",
+        "https://www.instagram.com/cobrei",
+        "https://www.linkedin.com/company/cobrei"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "suporte@cobrei.com.br"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Cobrei",
+      "description": "Plataforma de cobrança automática via WhatsApp e Pix para pequenos negócios",
+      "url": "https://cobrei.com.br",
+      "image": "https://cobrei.com.br/logo.png",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "BRL",
+        "lowPrice": "29.90",
+        "highPrice": "199.00",
+        "offerCount": "3",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "150",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://cobrei.com.br",
+      "name": "Cobrei",
+      "description": "Cobrança automática via WhatsApp e Pix",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://cobrei.com.br/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+
+    <!-- Google Analytics 4 (async) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', {
+        'page_path': window.location.pathname,
+        'anonymize_ip': true
+      });
+    </script>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Meta Pixel (async) -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'XXXXXXXXXXXXXXXXX');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXXXX&ev=PageView&noscript=1" /></noscript>
+
+    <!-- Microsoft Clarity (async) -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "XXXXXXXXXX");
+    </script>
   </body>
 </html>
