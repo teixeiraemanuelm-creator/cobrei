@@ -8,7 +8,7 @@ import { Check, Star } from "lucide-react";
 const PLANS = [
   {
     name: "Básico",
-    price: "49",
+    price: "29,90",
     description: "Ideal para autônomos e pequenos negócios.",
     features: [
       "Até 50 clientes",
@@ -22,7 +22,7 @@ const PLANS = [
   },
   {
     name: "Profissional",
-    price: "99",
+    price: "99,90",
     description: "O plano preferido de academias, clínicas e escolas.",
     features: [
       "Clientes ilimitados",

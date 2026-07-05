@@ -32,25 +32,12 @@ export default function Navbar() {
       <div className="container mx-auto max-w-6xl">
         <div className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
-          <div className="flex items-center gap-2.5">
-            <div
-              className="w-9 h-9 rounded-xl flex items-center justify-center"
-              style={{ background: "#0B1736", border: "1.5px solid rgba(16,216,118,0.3)" }}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M20 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H8L12 22L16 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z" fill="rgba(16,216,118,0.15)" stroke="#10D876" strokeWidth="1.5"/>
-                <path d="M7 10L10.5 13.5L17 7" stroke="#10D876" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <span
-              className="text-xl font-bold"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-                color: scrolled ? "#0B1736" : "white",
-              }}
-            >
-              cobrei
-            </span>
+          <div className="flex items-center gap-0">
+            <img
+              src="/manus-storage/file_000000001cb471f5a5bf831dd4452b00_8c94ad74.png"
+              alt="Cobrei Logo"
+              className="h-10 md:h-11 w-auto"
+            />
           </div>
 
           {/* Desktop nav */}
