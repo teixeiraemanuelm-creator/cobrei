@@ -65,6 +65,7 @@ export default function PricingSection() {
       id="planos"
       className="py-24"
       style={{ background: "#F5F7FA" }}
+      aria-labelledby="pricing-title"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
@@ -81,10 +82,11 @@ export default function PricingSection() {
             PLANOS E PREÇOS
           </div>
           <h2
+            id="pricing-title"
             className="text-3xl md:text-4xl font-bold text-[#0B1736] mb-4"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >
-            Comece grátis.
+            Começe grátis.
             <br />
             Pague só quando gostar.
           </h2>

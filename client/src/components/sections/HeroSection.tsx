@@ -280,6 +280,7 @@ export default function HeroSection() {
         background: "linear-gradient(135deg, #0B1736 0%, #1a2d5a 50%, #0d2040 100%)",
         paddingTop: "80px",
       }}
+      aria-labelledby="hero-title"
     >
       {/* Background image overlay - LCP Critical */}
       <div
@@ -322,6 +323,7 @@ export default function HeroSection() {
             {/* Headline */}
             <div>
               <h1
+                id="hero-title"
                 className="text-4xl md:text-5xl lg:text-[52px] font-bold leading-tight text-white"
                 style={{ fontFamily: "'Sora', sans-serif" }}
               >
@@ -354,22 +356,25 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                className="btn-cobrei text-base px-7 py-4 whitespace-nowrap"
+                className="btn-cobrei text-base px-7 py-4 whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10D876]"
                 onClick={() => scrollTo("planos")}
+                aria-label="Start free trial for 7 days"
               >
                 <span>Começar grátis por 7 dias</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={18} aria-hidden="true" />
               </button>
               <button
-                className="flex items-center gap-3 px-6 py-4 rounded-xl font-semibold text-white/80 hover:text-white transition-all duration-150 hover:bg-white/10"
+                className="flex items-center gap-3 px-6 py-4 rounded-xl font-semibold text-white/80 hover:text-white transition-all duration-150 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10D876]"
                 style={{ fontFamily: "'Sora', sans-serif", fontSize: "15px" }}
                 onClick={() => scrollTo("como-funciona")}
+                aria-label="Watch demonstration video"
               >
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center"
                   style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)" }}
+                  aria-hidden="true"
                 >
-                  <Play size={14} fill="white" />
+                  <Play size={14} fill="white" aria-hidden="true" />
                 </div>
                 Ver demonstração
               </button>
@@ -386,8 +391,9 @@ export default function HeroSection() {
                   <div
                     className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                     style={{ background: "rgba(16,216,118,0.2)" }}
+                    aria-hidden="true"
                   >
-                    <CheckCircle size={12} color="#10D876" />
+                    <CheckCircle size={12} color="#10D876" aria-hidden="true" />
                   </div>
                   <span
                     className="text-sm text-white/70"

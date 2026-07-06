@@ -2,6 +2,7 @@
  * Cobrei Navbar
  * Design: Conversational Tech — transparente no topo, opaco ao scroll
  * Cores: Navy #0B1736 | Verde #10D876
+ * Acessibilidade: WCAG 2.2 AA — aria-labels, focus-visible, landmarks, keyboard navigation
  */
 import { useState, useEffect } from "react";
 
@@ -21,6 +22,13 @@ export default function Navbar() {
     setMenuOpen(false);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent, id: string) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      scrollTo(id);
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -28,6 +36,8 @@ export default function Navbar() {
           ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-100"
           : "bg-transparent"
       }`}
+      role="banner"
+      aria-label="Site header"
     >
       <div className="container mx-auto max-w-6xl">
         <div className="flex items-center justify-between h-16 md:h-18">
@@ -35,13 +45,13 @@ export default function Navbar() {
           <div className="flex items-center gap-0">
             <img
               src="/manus-storage/file_000000001cb471f5a5bf831dd4452b00_8c94ad74.png"
-              alt="Cobrei Logo"
+              alt="Cobrei - Cobrança automática via WhatsApp e Pix"
               className="h-10 md:h-11 w-auto"
             />
           </div>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main navigation">
             {[
               { label: "Como funciona", id: "como-funciona" },
               { label: "Benefícios", id: "beneficios" },
@@ -50,8 +60,10 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="text-sm font-medium transition-colors duration-200 hover:text-[#10D876]"
+                onKeyDown={(e) => handleKeyDown(e, item.id)}
+                className="text-sm font-medium transition-colors duration-200 hover:text-[#10D876] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10D876] rounded-md"
                 style={{ color: scrolled ? "#0B1736" : "rgba(255,255,255,0.8)", fontFamily: "'Inter', sans-serif" }}
+                aria-label={`Navigate to ${item.label} section`}
               >
                 {item.label}
               </button>
@@ -62,19 +74,23 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => scrollTo("planos")}
-              className="text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-150"
+              onKeyDown={(e) => handleKeyDown(e, "planos")}
+              className="text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10D876]"
               style={{
                 color: scrolled ? "#0B1736" : "rgba(255,255,255,0.8)",
                 fontFamily: "'Sora', sans-serif",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = scrolled ? "rgba(0,0,0,0.05)" : "rgba(255,255,255,0.1)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+              aria-label="Sign in to Cobrei"
             >
               Entrar
             </button>
             <button
-              className="btn-cobrei text-sm px-5 py-2.5"
+              className="btn-cobrei text-sm px-5 py-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10D876]"
               onClick={() => scrollTo("planos")}
+              onKeyDown={(e) => handleKeyDown(e, "planos")}
+              aria-label="Start free trial of Cobrei"
             >
               Começar grátis
             </button>
@@ -82,19 +98,24 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-lg"
+            className="md:hidden p-2 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10D876]"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             <div className="w-5 flex flex-col gap-1.5">
               <span
                 className={`block h-0.5 bg-[#0B1736] transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
+                aria-hidden="true"
               />
               <span
                 className={`block h-0.5 bg-[#0B1736] transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`}
+                aria-hidden="true"
               />
               <span
                 className={`block h-0.5 bg-[#0B1736] transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                aria-hidden="true"
               />
             </div>
           </button>
@@ -102,7 +123,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 py-4 px-4 space-y-3">
+          <nav className="md:hidden bg-white border-t border-gray-100 py-4 px-4 space-y-3" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
             {[
               { label: "Como funciona", id: "como-funciona" },
               { label: "Benefícios", id: "beneficios" },
@@ -111,19 +132,23 @@ export default function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="block w-full text-left text-sm font-medium py-2 text-[#0B1736] hover:text-[#10D876] transition-colors"
+                onKeyDown={(e) => handleKeyDown(e, item.id)}
+                className="block w-full text-left text-sm font-medium py-2 text-[#0B1736] hover:text-[#10D876] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10D876] rounded-md px-2"
                 style={{ fontFamily: "'Inter', sans-serif" }}
+                aria-label={`Navigate to ${item.label} section`}
               >
                 {item.label}
               </button>
             ))}
             <button
-              className="btn-cobrei w-full justify-center mt-2"
+              className="btn-cobrei w-full justify-center mt-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10D876]"
               onClick={() => scrollTo("planos")}
+              onKeyDown={(e) => handleKeyDown(e, "planos")}
+              aria-label="Start free trial of Cobrei"
             >
               Começar grátis
             </button>
-          </div>
+          </nav>
         )}
       </div>
     </header>

@@ -118,7 +118,7 @@ function AreaChartSVG() {
 
 export default function DashboardSection() {
   return (
-    <section id="dashboard" className="py-24 bg-white overflow-hidden">
+    <section id="dashboard" className="py-24 bg-white overflow-hidden" aria-labelledby="dashboard-title">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-14 reveal">
@@ -134,6 +134,7 @@ export default function DashboardSection() {
             PAINEL DE CONTROLE
           </div>
           <h2
+            id="dashboard-title"
             className="text-3xl md:text-4xl font-bold text-[#0B1736] mb-4"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >

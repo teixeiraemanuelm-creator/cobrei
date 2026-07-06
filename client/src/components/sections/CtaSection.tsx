@@ -16,6 +16,7 @@ export default function CtaSection() {
       <section
         className="relative py-28 overflow-hidden"
         style={{ background: "#0B1736" }}
+        aria-labelledby="cta-title"
       >
         {/* Background image */}
         <div
@@ -51,6 +52,7 @@ export default function CtaSection() {
 
             {/* Headline */}
             <h2
+              id="cta-title"
               className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight"
               style={{ fontFamily: "'Sora', sans-serif" }}
             >

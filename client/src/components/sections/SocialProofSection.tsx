@@ -84,6 +84,7 @@ export default function SocialProofSection() {
       id="prova-social"
       className="py-20 relative overflow-hidden"
       style={{ background: "#F5F7FA" }}
+      aria-labelledby="social-proof-title"
     >
       {/* Background subtle image */}
       <div
@@ -93,9 +94,18 @@ export default function SocialProofSection() {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
+        aria-hidden="true"
       />
 
       <div className="container mx-auto max-w-6xl relative z-10">
+        {/* Heading */}
+        <h2
+          id="social-proof-title"
+          className="sr-only"
+        >
+          Prova Social - Números Impactantes
+        </h2>
+
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 mb-16">
           <div className="reveal">

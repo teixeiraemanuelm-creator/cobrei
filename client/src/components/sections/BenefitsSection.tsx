@@ -68,6 +68,7 @@ export default function BenefitsSection() {
       id="beneficios"
       className="py-24"
       style={{ background: "#F5F7FA" }}
+      aria-labelledby="benefits-title"
     >
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
@@ -85,6 +86,7 @@ export default function BenefitsSection() {
               BENEFÍCIOS
             </div>
             <h2
+              id="benefits-title"
               className="text-3xl md:text-4xl font-bold text-[#0B1736]"
               style={{ fontFamily: "'Sora', sans-serif" }}
             >

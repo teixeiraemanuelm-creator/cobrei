@@ -2,6 +2,7 @@
  * Home – Landing Page do Cobrei
  * Design: Conversational Tech — Neo-SaaS com influência de product-led growth
  * Seções: Hero → Prova Social → Como Funciona → Benefícios → Dashboard → Planos → CTA + Footer
+ * Acessibilidade: WCAG 2.2 AA — landmarks semânticos, headings estruturados
  */
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
@@ -39,14 +40,34 @@ export default function Home() {
     <div className="min-h-screen">
       <RevealWrapper />
       <Navbar />
-      <main>
-        <HeroSection />
-        <SocialProofSection />
-        <HowItWorksSection />
-        <BenefitsSection />
-        <DashboardSection />
-        <PricingSection />
-        <CtaSection />
+      <main role="main" aria-label="Main content">
+        <section aria-labelledby="hero-title">
+          <HeroSection />
+        </section>
+        
+        <section aria-labelledby="social-proof-title">
+          <SocialProofSection />
+        </section>
+        
+        <section id="como-funciona" aria-labelledby="how-it-works-title">
+          <HowItWorksSection />
+        </section>
+        
+        <section id="beneficios" aria-labelledby="benefits-title">
+          <BenefitsSection />
+        </section>
+        
+        <section id="dashboard" aria-labelledby="dashboard-title">
+          <DashboardSection />
+        </section>
+        
+        <section id="planos" aria-labelledby="pricing-title">
+          <PricingSection />
+        </section>
+        
+        <section aria-labelledby="cta-title">
+          <CtaSection />
+        </section>
       </main>
     </div>
   );

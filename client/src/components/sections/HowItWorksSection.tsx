@@ -42,7 +42,7 @@ const STEPS = [
 
 export default function HowItWorksSection() {
   return (
-    <section id="como-funciona" className="py-24 bg-white">
+    <section id="como-funciona" className="py-24 bg-white" aria-labelledby="how-it-works-title">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-16 reveal">
@@ -58,6 +58,7 @@ export default function HowItWorksSection() {
             COMO FUNCIONA
           </div>
           <h2
+            id="how-it-works-title"
             className="text-3xl md:text-4xl font-bold text-[#0B1736] mb-4"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >
