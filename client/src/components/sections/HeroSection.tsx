@@ -6,6 +6,7 @@
  */
 import { useState, useEffect, useRef } from "react";
 import { CheckCircle, Play, ArrowRight } from "lucide-react";
+import LeadCaptureModal from "../LeadCaptureModal";
 
 const WHATSAPP_MESSAGES = [
   { id: 1, type: "received", text: "Olá, João! 👋\n\nSua mensalidade de R$150,00 vence hoje.", delay: 0 },
@@ -268,6 +269,8 @@ function WhatsAppMockup() {
 }
 
 export default function HeroSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -357,7 +360,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 className="btn-cobrei text-base px-7 py-4 whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10D876]"
-                onClick={() => scrollTo("planos")}
+                onClick={() => setIsModalOpen(true)}
                 aria-label="Start free trial for 7 days"
               >
                 <span>Começar grátis por 7 dias</span>
@@ -471,6 +474,9 @@ export default function HeroSection() {
           <path d="M0 60L1440 60L1440 20C1200 60 960 0 720 20C480 40 240 0 0 20L0 60Z" fill="white" />
         </svg>
       </div>
+
+      {/* Lead Capture Modal */}
+      <LeadCaptureModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

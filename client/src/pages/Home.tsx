@@ -5,6 +5,7 @@
  * Acessibilidade: WCAG 2.2 AA — landmarks semânticos, headings estruturados
  */
 import { useEffect } from "react";
+import { useAuth } from "@/_core/hooks/useAuth";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import SocialProofSection from "@/components/sections/SocialProofSection";
@@ -13,9 +14,13 @@ import BenefitsSection from "@/components/sections/BenefitsSection";
 import DashboardSection from "@/components/sections/DashboardSection";
 import PricingSection from "@/components/sections/PricingSection";
 import CtaSection from "@/components/sections/CtaSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import RevealWrapper from "@/components/RevealWrapper";
 
 export default function Home() {
+  // Authentication state from useAuth hook
+  const { user, loading, isAuthenticated, logout } = useAuth();
+
   // Scroll reveal observer
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,6 +68,10 @@ export default function Home() {
         
         <section id="planos" aria-labelledby="pricing-title">
           <PricingSection />
+        </section>
+        
+        <section id="depoimentos" aria-labelledby="testimonials-title">
+          <TestimonialsSection />
         </section>
         
         <section aria-labelledby="cta-title">
